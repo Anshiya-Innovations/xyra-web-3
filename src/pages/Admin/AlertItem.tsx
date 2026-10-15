@@ -116,7 +116,7 @@ export default function AlertItem() {
   }
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-5">
       <PageMeta title={`${header.controlId} Alert | Xyra`} description="Alert item details" />
       <PageHeader
         crumbs={["Control Management", "Deviation Report", `${header.controlId} Alert Details`]}
@@ -133,7 +133,7 @@ export default function AlertItem() {
       {error && <ErrorBanner>{error}</ErrorBanner>}
 
       <Card title="Alert Context Summary">
-        <div className="grid grid-cols-2 gap-6 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-5 lg:grid-cols-4">
           <DetailItem label="Control ID & Name">
             {header.controlId}
             <span className="block text-sm font-normal text-gray-500 dark:text-gray-400">{header.controlDescription}</span>

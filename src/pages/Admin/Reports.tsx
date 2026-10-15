@@ -179,7 +179,7 @@ export default function Reports() {
   };
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-5">
       <PageMeta title="Reports | Xyra" description="Control history data review" />
       <PageHeader crumbs={["Reports"]} title="Reports" description="Control History Data Review" />
 

@@ -113,7 +113,7 @@ export default function Auditor() {
   if (selected) return <ReviewReport review={selected} parentLabel="Auditor Dashboard" onBack={() => setSelected(null)} />;
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-5">
       <PageMeta title="Auditor Dashboard | Xyra" description="Read-only audit oversight" />
       <PageHeader
         crumbs={["Auditor Dashboard"]}
@@ -150,7 +150,7 @@ export default function Auditor() {
           {activeTab === "records" && <AuditLogs embedded />}
 
           {activeTab === "remediation" && (
-            <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-5">
               <FilterCard
                 onReset={() => {
                   setRemQuery("");
@@ -215,7 +215,7 @@ export default function Auditor() {
           )}
 
           {activeTab === "history" && (
-            <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-5">
               <FilterCard
                 onReset={() => {
                   setHistQuery("");

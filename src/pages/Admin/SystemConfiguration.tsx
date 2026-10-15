@@ -10,6 +10,7 @@ import {
   ErrorBanner,
   IconButton,
   InfoBanner,
+  KpiTile,
   Loading,
   opts,
   PageHeader,
@@ -429,7 +430,7 @@ export default function SystemConfiguration() {
   const set = (key: keyof FormState) => (value: string) => setForm((f) => ({ ...f, [key]: value }));
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-5">
       <PageMeta title="System Configuration | Xyra" description="SAP system landscape configuration" />
       <PageHeader
         crumbs={["System Configuration"]}
@@ -545,7 +546,7 @@ export default function SystemConfiguration() {
           )}
 
           {activeTab === "health" && (
-            <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-5">
               <div className="flex flex-wrap items-center justify-between gap-4">
                 <div>
                   <h3 className="text-lg font-semibold text-gray-800 dark:text-white/90">SAP Landscape Live Health & Telemetry</h3>
@@ -572,21 +573,15 @@ export default function SystemConfiguration() {
 
               <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
                 {(["Online", "Offline", "Degraded", "Unknown"] as const).map((status) => (
-                  <button
+                  <KpiTile
                     key={status}
-                    type="button"
+                    label={`${status} Systems`}
+                    value={kpis[status]}
+                    hint={STATUS_HINT[status]}
+                    color={STATUS_BADGE_COLOR[status]}
+                    active={healthStatusFilter === status}
                     onClick={() => setHealthStatusFilter((prev) => (prev === status ? null : status))}
-                    className={cn(
-                      "flex flex-col items-start gap-2 rounded-2xl border bg-white p-5 text-left transition dark:bg-white/3",
-                      healthStatusFilter === status
-                        ? "border-brand-500 ring-2 ring-brand-500/20"
-                        : "border-gray-200 hover:border-gray-300 dark:border-gray-800",
-                    )}
-                  >
-                    <span className="text-sm text-gray-500 dark:text-gray-400">{status} Systems</span>
-                    <span className="text-title-sm font-bold text-gray-800 dark:text-white/90">{kpis[status]}</span>
-                    <XBadge color={STATUS_BADGE_COLOR[status]}>{STATUS_HINT[status]}</XBadge>
-                  </button>
+                  />
                 ))}
               </div>
 
@@ -677,7 +672,7 @@ export default function SystemConfiguration() {
           </>
         }
       >
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-5">
           <div>
             <h5 className="mb-3 text-sm font-semibold text-gray-800 dark:text-white/90">System Identification</h5>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">

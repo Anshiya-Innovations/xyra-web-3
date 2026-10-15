@@ -324,7 +324,7 @@ export default function AiInsights() {
   const result = data ? buildInsights(data) : null;
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-5">
       <PageMeta title="AI Insights | Xyra" description="Compliance score recommendations" />
       <PageHeader
         crumbs={["AI Insights"]}
@@ -345,7 +345,7 @@ export default function AiInsights() {
             title="Compliance Score Outlook"
             description={`The score is the share of passed rule checks across all run history (${data.passedChecks} of ${data.totalChecks}). Each full run adds ${result.checksPerRun} new check(s).`}
           >
-            <div className="grid grid-cols-2 gap-6 lg:grid-cols-4">
+            <div className="grid grid-cols-2 gap-5 lg:grid-cols-4">
               <Outlook label="Current Score" value={pct(result.current)} tone={result.current >= TARGET_SCORE ? "success" : "error"} />
               <Outlook label="Next Run, Nothing Changed" value={pct(result.nextRunAsIs)} tone="default" />
               <Outlook label="Next Run, All Tips Applied" value={pct(result.nextRunAllFixed)} tone="success" />

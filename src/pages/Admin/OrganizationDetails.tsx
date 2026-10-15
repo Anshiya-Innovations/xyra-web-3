@@ -388,7 +388,7 @@ export default function OrganizationDetails() {
   const setJ = (key: keyof JiraSettings) => (v: string) => setJira((j) => ({ ...j, [key]: v }));
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-5">
       <PageMeta title={`${org.name} | Xyra`} description="Organization details" />
       <PageHeader
         crumbs={["Organization", org.name]}
@@ -415,7 +415,7 @@ export default function OrganizationDetails() {
 
         <div className="pt-6">
           {activeTab === "details" && (
-            <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+            <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
               <Card
                 title="Organization Profile"
                 actions={

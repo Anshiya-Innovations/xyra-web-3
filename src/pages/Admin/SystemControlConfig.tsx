@@ -170,7 +170,7 @@ export default function SystemControlConfig() {
   };
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-5">
       <PageMeta title="System Control Config | Xyra" description="Map controls to systems" />
       <PageHeader
         crumbs={["Control Management", "System Control Config"]}

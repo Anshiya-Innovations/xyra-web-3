@@ -211,7 +211,7 @@ export default function EscalationManager() {
   const systemOptions = [ALL, ...distinctOptions(systems.map((s) => s.sysId))];
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-5">
       <PageMeta title="Escalation Manager | Xyra" description="Review chain oversight" />
       <PageHeader
         crumbs={["Escalation Manager"]}
@@ -238,7 +238,7 @@ export default function EscalationManager() {
 
         <div className="pt-6">
           {activeTab === "pending" && (
-            <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-5">
               <div className="grid grid-cols-2 gap-4">
                 <CountTile label="Pending Approval" value={pendingKpis.pending} />
                 <CountTile
@@ -316,7 +316,7 @@ export default function EscalationManager() {
           )}
 
           {activeTab === "history" && (
-            <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-5">
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
                 <CountTile label="Approved & Closed Audits" value={historyKpis.approved} color="success" />
                 <CountTile label="Rejected / Ticketed" value={historyKpis.rejected} color="error" />

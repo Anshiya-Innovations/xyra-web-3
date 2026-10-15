@@ -1,7 +1,7 @@
 import PageMeta from "@/components/common/PageMeta";
 import { Table, TableBody, TableCell, TableHeader, TableRow } from "@/components/ui/table";
 import { DonutChart } from "@/components/xyra/charts";
-import { type BadgeColors, Card, ErrorBanner, Loading, StatCard, TableCard, TBODY, TD, TH, THEAD, XBadge } from "@/components/xyra/kit";
+import { type BadgeColors, Card, ErrorBanner, StatCard, TableCard, TBODY, TD, TH, THEAD, XBadge } from "@/components/xyra/kit";
 import {
   type AlertHeader,
   type Control,
@@ -117,10 +117,8 @@ export default function Dashboard() {
     [deviations],
   );
 
-  if (isLoading) return <Loading label="Loading dashboard…" />;
-
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-5">
       <PageMeta title="Admin Dashboard | Xyra" description="Continuous Control Monitoring overview" />
       <div className="flex flex-col gap-1">
         <div className="flex flex-wrap items-center gap-3">
@@ -134,16 +132,40 @@ export default function Dashboard() {
 
       {error && <ErrorBanner>{error}</ErrorBanner>}
 
-      <div className="grid grid-cols-2 gap-4 md:gap-6 lg:grid-cols-4">
-        <StatCard label="Open Deviations" value={kpi.openItems} icon={AlertTriangle} tone="error" />
-        <StatCard label="Compliance Rate" value={kpi.complianceRate} icon={CheckCircle} tone="success" />
-        <StatCard label="Systems Monitored" value={systems.length} icon={Server01} tone="brand" />
-        <StatCard label="Active / Total Controls" value={`${activeControls}/${controls.length}`} icon={Shield01} tone="brand" />
+      <div className="grid grid-cols-2 gap-4 md:gap-5 lg:grid-cols-4">
+        <StatCard
+          label="Open Deviations"
+          value={isLoading ? <Skel className="h-7 w-10 bg-white/25" /> : kpi.openItems}
+          icon={AlertTriangle}
+          tone="error"
+        />
+        <StatCard
+          label="Compliance Rate"
+          value={isLoading ? <Skel className="h-7 w-14 bg-white/25" /> : kpi.complianceRate}
+          icon={CheckCircle}
+          tone="success"
+        />
+        <StatCard
+          label="Systems Monitored"
+          value={isLoading ? <Skel className="h-7 w-10 bg-white/25" /> : systems.length}
+          icon={Server01}
+          tone="brand"
+        />
+        <StatCard
+          label="Active / Total Controls"
+          value={isLoading ? <Skel className="h-7 w-14 bg-white/25" /> : `${activeControls}/${controls.length}`}
+          icon={Shield01}
+          tone="gray"
+        />
       </div>
 
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
         <Card title="Control Severity Distribution" description="How your controls are weighted">
-          {severityData.length === 0 ? (
+          {isLoading ? (
+            <div className="flex justify-center py-8">
+              <Skel className="size-44 rounded-full bg-gray-200 dark:bg-white/10" />
+            </div>
+          ) : severityData.length === 0 ? (
             <p className="py-16 text-center text-sm text-gray-500 dark:text-gray-400">No controls yet.</p>
           ) : (
             <DonutChart
@@ -156,33 +178,55 @@ export default function Dashboard() {
 
         <Card title="Deviation Summary" description="Tenant-wide incident totals">
           <div className="flex flex-col gap-3">
-            <SummaryRow label="Total Incidents" value={kpi.totalIncidents} color="error" />
-            <SummaryRow label="Open Items" value={kpi.openItems} color="warning" />
-            <SummaryRow label="Resolved Items" value={kpi.resolvedItems} color="success" />
-            <SummaryRow label="Audited Controls" value={kpi.auditedControls} color="gray" />
-            <SummaryRow label="Compliance Rate" value={kpi.complianceRate} color="success" last />
+            {isLoading
+              ? Array.from({ length: 5 }).map((_, i) => (
+                  <div key={i} className="flex items-center justify-between pb-3 last:pb-0">
+                    <Skel className="h-4 w-28 bg-gray-200 dark:bg-white/10" />
+                    <Skel className="h-5 w-10 bg-gray-200 dark:bg-white/10" />
+                  </div>
+                ))
+              : [
+                  <SummaryRow key="total" label="Total Incidents" value={kpi.totalIncidents} color="error" />,
+                  <SummaryRow key="open" label="Open Items" value={kpi.openItems} color="warning" />,
+                  <SummaryRow key="resolved" label="Resolved Items" value={kpi.resolvedItems} color="success" />,
+                  <SummaryRow key="audited" label="Audited Controls" value={kpi.auditedControls} color="gray" />,
+                  <SummaryRow key="rate" label="Compliance Rate" value={kpi.complianceRate} color="success" last />,
+                ]}
           </div>
         </Card>
 
         <Card title="Review Pipeline" description="Level 1/2 review queues & remediation tickets">
           <div className="flex flex-col gap-4">
-            {pipelineRows.map((row) => (
-              <div key={row.label} className="flex flex-col gap-1.5">
-                <div className="flex items-center justify-between text-sm">
-                  <span className="font-medium text-gray-700 dark:text-gray-300">{row.label}</span>
-                  <span className="font-semibold text-gray-800 dark:text-white/90">{row.value}</span>
-                </div>
-                <div className="h-2 w-full overflow-hidden rounded-full bg-gray-100 dark:bg-white/5">
-                  <div className={cn("h-full rounded-full transition-all", row.color)} style={{ width: `${row.pct}%` }} />
-                </div>
-              </div>
-            ))}
+            {isLoading
+              ? Array.from({ length: 5 }).map((_, i) => (
+                  <div key={i} className="flex flex-col gap-1.5">
+                    <Skel className="h-4 w-32 bg-gray-200 dark:bg-white/10" />
+                    <Skel className="h-2 w-full bg-gray-100 dark:bg-white/5" />
+                  </div>
+                ))
+              : pipelineRows.map((row) => (
+                  <div key={row.label} className="flex flex-col gap-1.5">
+                    <div className="flex items-center justify-between text-sm">
+                      <span className="font-medium text-gray-700 dark:text-gray-300">{row.label}</span>
+                      <span className="font-semibold text-gray-800 dark:text-white/90">{row.value}</span>
+                    </div>
+                    <div className="h-2 w-full overflow-hidden rounded-full bg-gray-100 dark:bg-white/5">
+                      <div className={cn("h-full rounded-full transition-all", row.color)} style={{ width: `${row.pct}%` }} />
+                    </div>
+                  </div>
+                ))}
           </div>
         </Card>
       </div>
 
       <TableCard title="Recent Deviations" description="The 5 most recent alerts across every control">
-        {recentDeviations.length === 0 ? (
+        {isLoading ? (
+          <div className="flex flex-col gap-4 p-5">
+            {Array.from({ length: 5 }).map((_, i) => (
+              <Skel key={i} className="h-5 w-full bg-gray-200 dark:bg-white/10" />
+            ))}
+          </div>
+        ) : recentDeviations.length === 0 ? (
           <p className="p-8 text-center text-sm text-gray-500 dark:text-gray-400">No deviations recorded yet.</p>
         ) : (
           <Table>
@@ -232,4 +276,8 @@ function SummaryRow({ label, value, color, last }: { label: string; value: numbe
       <XBadge color={color}>{value}</XBadge>
     </div>
   );
+}
+
+function Skel({ className }: { className?: string }) {
+  return <div className={cn("animate-pulse rounded", className)} />;
 }

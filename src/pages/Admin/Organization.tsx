@@ -157,7 +157,7 @@ export default function Organization() {
   };
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-5">
       <PageMeta title="Organization | Xyra" description="Organization management" />
       <PageHeader
         crumbs={["Organization"]}

@@ -139,7 +139,7 @@ export default function Profile() {
     .toUpperCase();
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-5">
       <PageMeta title="Profile | Xyra" description="User profile and account settings" />
       <PageHeader
         crumbs={["Profile"]}

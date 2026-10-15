@@ -136,7 +136,7 @@ export default function AccessManagement() {
   };
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-5">
       <PageMeta title="Access Management | Xyra" description="User access provisioning & persona management" />
       <PageHeader crumbs={["Access Management"]} title="Access Management" description="User access provisioning & persona management." />
 

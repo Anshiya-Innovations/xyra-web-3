@@ -15,6 +15,7 @@ import {
   PageHeader,
   SearchInput,
   SelectField,
+  StatCard,
   TableCard,
   TBODY,
   TD,
@@ -192,7 +193,7 @@ export default function SoxCompliance() {
   const selectedControl = selected ? controls.find((c) => c.id === selected.controlId) : undefined;
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-5">
       <PageMeta title="SOX Compliance | Xyra" description="Sarbanes-Oxley control testing status" />
       <PageHeader
         crumbs={["SOX Compliance"]}
@@ -208,19 +209,19 @@ export default function SoxCompliance() {
       {error && <ErrorBanner>{error}</ErrorBanner>}
 
       <div className="grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-5">
-        <SoxStat label="Monitored Controls" value={rows.length} note="Control × system mappings" />
-        <SoxStat
+        <StatCard label="Monitored Controls" value={rows.length} hint="Control × system mappings" tone="gray" />
+        <StatCard
           label="Active Automated"
           value={activeCount}
-          note={rows.length ? `${Math.round((activeCount / rows.length) * 100)}% running on schedule` : "—"}
+          hint={rows.length ? `${Math.round((activeCount / rows.length) * 100)}% running on schedule` : "—"}
           tone="brand"
         />
-        <SoxStat label="Open Deviations" value={openDeviations} note="Unresolved line items" tone={openDeviations ? "error" : "success"} />
-        <SoxStat label="Compliance Score" value={kpi?.complianceRate ?? "—"} note="Rule checks passed" tone="success" />
-        <SoxStat label="High-Risk Issues" value={highRiskOpen} note="Unresolved high/critical alerts" tone={highRiskOpen ? "error" : "success"} />
+        <StatCard label="Open Deviations" value={openDeviations} hint="Unresolved line items" tone={openDeviations ? "error" : "success"} />
+        <StatCard label="Compliance Score" value={kpi?.complianceRate ?? "—"} hint="Rule checks passed" tone="success" />
+        <StatCard label="High-Risk Issues" value={highRiskOpen} hint="Unresolved high/critical alerts" tone={highRiskOpen ? "error" : "success"} />
       </div>
 
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
         <Card title="Compliance Status Distribution" description="Breakdown of monitored controls by current status">
           {donut.length === 0 ? (
             <p className="py-16 text-center text-sm text-gray-500 dark:text-gray-400">No controls are mapped to systems yet.</p>
@@ -350,7 +351,7 @@ export default function SoxCompliance() {
         }
       >
         {selected && (
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-5">
             <section>
               <h5 className="mb-3 text-sm font-semibold text-gray-800 dark:text-white/90">Control Overview</h5>
               <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
@@ -451,19 +452,3 @@ export default function SoxCompliance() {
   );
 }
 
-const TONE_CLASS = {
-  default: "text-gray-800 dark:text-white/90",
-  brand: "text-brand-500 dark:text-brand-400",
-  success: "text-success-600 dark:text-success-500",
-  error: "text-error-600 dark:text-error-500",
-} as const;
-
-function SoxStat({ label, value, note, tone = "default" }: { label: string; value: string | number; note: string; tone?: keyof typeof TONE_CLASS }) {
-  return (
-    <div className="flex flex-col gap-1 rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/3">
-      <span className="text-sm text-gray-500 dark:text-gray-400">{label}</span>
-      <span className={cn("text-title-sm font-bold", TONE_CLASS[tone])}>{value}</span>
-      <span className="text-theme-xs text-gray-500 dark:text-gray-400">{note}</span>
-    </div>
-  );
-}

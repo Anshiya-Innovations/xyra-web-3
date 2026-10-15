@@ -281,7 +281,7 @@ export default function ReviewerQueue({ level }: { level: 1 | 2 }) {
   // DETAIL VIEW
   if (selectedReview) {
     return (
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-5">
         <PageMeta title={`${selectedReview.controlId} Review | Xyra`} description="Deviation review" />
         <PageHeader
           crumbs={[config.pageTitle, `${selectedReview.controlId} Review`]}
@@ -293,7 +293,7 @@ export default function ReviewerQueue({ level }: { level: 1 | 2 }) {
 
         {config.showReviewer1Summary && (
           <Card title="Reviewer 1 Review Summary">
-            <div className="grid grid-cols-2 gap-6 lg:grid-cols-4">
+            <div className="grid grid-cols-2 gap-5 lg:grid-cols-4">
               <DetailItem label="Reviewer 1 Decision">
                 {DECISION_LABEL[selectedReview.reviewer1Status] || selectedReview.reviewer1Status}
               </DetailItem>
@@ -313,7 +313,7 @@ export default function ReviewerQueue({ level }: { level: 1 | 2 }) {
         </Card>
 
         <Card title="Electronic Signature & Attestation">
-          <div className="grid grid-cols-2 gap-6 lg:grid-cols-3">
+          <div className="grid grid-cols-2 gap-5 lg:grid-cols-3">
             <DetailItem label="Reviewer">{session?.name || "—"}</DetailItem>
             <DetailItem label="Email">{session?.email || "—"}</DetailItem>
             <DetailItem label="Decision Date">{new Date().toLocaleDateString()}</DetailItem>
@@ -385,7 +385,7 @@ export default function ReviewerQueue({ level }: { level: 1 | 2 }) {
   const sortProps = (s: typeof queueSort) => ({ sort: s.sortDescriptor, onSortChange: s.onSortChange, className: TH });
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-5">
       <PageMeta title={`${config.pageTitle} | Xyra`} description={config.pageSubtitle} />
       <PageHeader
         crumbs={[config.pageTitle]}
@@ -412,7 +412,7 @@ export default function ReviewerQueue({ level }: { level: 1 | 2 }) {
 
         <div className="pt-6">
           {activeTab === "queue" && (
-            <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-5">
               <Card
                 title="Filters"
                 actions={
@@ -509,7 +509,7 @@ export default function ReviewerQueue({ level }: { level: 1 | 2 }) {
           )}
 
           {activeTab === "history" && (
-            <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-5">
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
                 <CountTile label={config.historyKpiLabels.approved} value={historyKpis.approved} color="success" />
                 <CountTile label={config.historyKpiLabels.rejected} value={historyKpis.rejected} color="error" />

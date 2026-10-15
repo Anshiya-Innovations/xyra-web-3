@@ -142,7 +142,7 @@ export function Card({
   return (
     <div className={cn("rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/3", className)}>
       {(title || actions) && (
-        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-gray-100 px-5 py-4 sm:px-6 dark:border-gray-800">
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-gray-100 px-4 py-3 sm:px-5 dark:border-gray-800">
           <div>
             {title && <h3 className="text-base font-semibold text-gray-800 dark:text-white/90">{title}</h3>}
             {description && <p className="mt-0.5 text-sm text-gray-500 dark:text-gray-400">{description}</p>}
@@ -150,7 +150,7 @@ export function Card({
           {actions && <div className="flex flex-wrap items-center gap-3">{actions}</div>}
         </div>
       )}
-      <div className={cn(title || actions ? "p-5 sm:p-6" : "p-5 sm:p-6", bodyClassName)}>{children}</div>
+      <div className={cn("p-4 sm:p-5", bodyClassName)}>{children}</div>
     </div>
   );
 }
@@ -174,7 +174,7 @@ export function TableCard({
   return (
     <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/3">
       {(title || actions) && (
-        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-gray-100 px-5 py-4 sm:px-6 dark:border-gray-800">
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-gray-100 px-4 py-3 sm:px-5 dark:border-gray-800">
           <div>
             <div className="flex items-center gap-2">
               {title && <h3 className="text-base font-semibold text-gray-800 dark:text-white/90">{title}</h3>}
@@ -192,9 +192,9 @@ export function TableCard({
 }
 
 // Table cell classes (TailAdmin BasicTableOne look).
-export const TH = "px-5 py-3 text-start text-theme-xs font-medium whitespace-nowrap text-gray-500 dark:text-gray-400";
-export const TD = "px-5 py-3.5 text-start text-theme-sm text-gray-500 dark:text-gray-400";
-export const TD_STRONG = "px-5 py-3.5 text-start text-theme-sm font-medium text-gray-800 dark:text-white/90";
+export const TH = "px-4 py-2.5 text-start text-theme-xs font-medium whitespace-nowrap text-gray-500 dark:text-gray-400";
+export const TD = "px-4 py-3 text-start text-theme-sm text-gray-500 dark:text-gray-400";
+export const TD_STRONG = "px-4 py-3 text-start text-theme-sm font-medium text-gray-800 dark:text-white/90";
 export const THEAD = "border-b border-gray-100 dark:border-white/5";
 export const TBODY = "divide-y divide-gray-100 dark:divide-white/5";
 export const TROW_HOVER = "hover:bg-gray-50 dark:hover:bg-white/2";
@@ -444,6 +444,18 @@ export function Dialog({
   );
 }
 
+// ---- Solid KPI tone: used by StatCard/KpiTile/CountTile so every KPI card
+// reads as a filled color block rather than another white bordered box.
+const SOLID_TONE: Record<"brand" | "success" | "error" | "warning" | "gray", string> = {
+  brand: "bg-brand-500",
+  success: "bg-success-500",
+  error: "bg-error-500",
+  warning: "bg-warning-500",
+  gray: "bg-gray-600",
+};
+const toSolidTone = (color: BadgeColors): keyof typeof SOLID_TONE =>
+  color in SOLID_TONE ? (color as keyof typeof SOLID_TONE) : "gray";
+
 // ---- Small KPI tile.
 export function StatCard({
   label,
@@ -458,23 +470,16 @@ export function StatCard({
   icon?: FC<{ className?: string }>;
   tone?: "brand" | "success" | "error" | "warning" | "gray";
 }) {
-  const toneClass = {
-    brand: "bg-brand-50 text-brand-500 dark:bg-brand-500/15 dark:text-brand-400",
-    success: "bg-success-50 text-success-600 dark:bg-success-500/15 dark:text-success-500",
-    error: "bg-error-50 text-error-600 dark:bg-error-500/15 dark:text-error-500",
-    warning: "bg-warning-50 text-warning-600 dark:bg-warning-500/15 dark:text-orange-400",
-    gray: "bg-gray-100 text-gray-700 dark:bg-white/5 dark:text-gray-300",
-  }[tone];
   return (
-    <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/3">
+    <div className={cn("rounded-2xl p-4 text-white", SOLID_TONE[tone])}>
       {Icon && (
-        <div className={cn("mb-4 flex size-11 items-center justify-center rounded-xl", toneClass)}>
+        <div className="mb-3 flex size-10 items-center justify-center rounded-xl bg-white/15">
           <Icon className="size-5" />
         </div>
       )}
-      <span className="text-sm text-gray-500 dark:text-gray-400">{label}</span>
-      <h4 className="mt-1 text-title-sm font-bold text-gray-800 dark:text-white/90">{value}</h4>
-      {hint && <p className="mt-1 text-theme-xs text-gray-500 dark:text-gray-400">{hint}</p>}
+      <span className="text-sm text-white/80">{label}</span>
+      <h4 className="mt-1 text-title-sm font-bold">{value}</h4>
+      {hint && <p className="mt-1 text-theme-xs text-white/80">{hint}</p>}
     </div>
   );
 }
@@ -628,31 +633,25 @@ export function KpiTile({
       type={onClick ? "button" : undefined}
       onClick={onClick}
       className={cn(
-        "flex flex-col items-start gap-2 rounded-2xl border bg-white p-5 text-left dark:bg-white/3",
-        active ? "border-brand-500 ring-2 ring-brand-500/20" : "border-gray-200 dark:border-gray-800",
-        onClick && !active && "transition hover:border-gray-300 dark:hover:border-gray-700",
+        "flex flex-col items-start gap-1.5 rounded-2xl p-4 text-left text-white",
+        SOLID_TONE[toSolidTone(color)],
+        active && "ring-2 ring-offset-2 ring-offset-white dark:ring-offset-gray-900",
+        onClick && !active && "transition hover:opacity-90",
       )}
     >
-      <span className="text-sm text-gray-500 dark:text-gray-400">{label}</span>
-      <span className="text-title-sm font-bold text-gray-800 dark:text-white/90">{value}</span>
-      {hint && <XBadge color={color}>{hint}</XBadge>}
+      <span className="text-sm text-white/80">{label}</span>
+      <span className="text-title-sm font-bold">{value}</span>
+      {hint && <span className="rounded-full bg-white/15 px-2.5 py-0.5 text-theme-xs font-medium">{hint}</span>}
     </Tag>
   );
 }
 
-const COUNT_TEXT: Partial<Record<BadgeColors, string>> = {
-  brand: "text-brand-500 dark:text-brand-400",
-  error: "text-error-600 dark:text-error-500",
-  warning: "text-warning-600 dark:text-orange-400",
-  success: "text-success-600 dark:text-success-500",
-};
-
 // Label + big colored number (queue/history counters).
 export function CountTile({ label, value, color = "gray" }: { label: ReactNode; value: ReactNode; color?: BadgeColors }) {
   return (
-    <div className="flex flex-col gap-2 rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/3">
-      <span className="text-sm text-gray-500 dark:text-gray-400">{label}</span>
-      <span className={cn("text-title-sm font-bold", COUNT_TEXT[color] ?? "text-gray-800 dark:text-white/90")}>{value}</span>
+    <div className={cn("flex flex-col gap-1.5 rounded-2xl p-4 text-white", SOLID_TONE[toSolidTone(color)])}>
+      <span className="text-sm text-white/80">{label}</span>
+      <span className="text-title-sm font-bold">{value}</span>
     </div>
   );
 }

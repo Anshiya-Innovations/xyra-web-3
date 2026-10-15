@@ -186,7 +186,7 @@ export default function DeviationReport() {
   const pagedHeaders = headers.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-5">
       <PageMeta title="Deviation Report | Xyra" description="Detailed analysis of control deviations" />
       <PageHeader
         crumbs={["Control Management", "Deviation Report"]}
@@ -264,7 +264,7 @@ export default function DeviationReport() {
             </div>
           ) : (
             <>
-              <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+              <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
                 <Card title="Deviation Status Distribution" description="Categorized incident breakdown">
                   <DonutChart labels={donut} series={donut.map((s) => statusCounts[s])} colors={donut.map((s) => STATUS_COLORS[s])} />
                 </Card>
@@ -283,7 +283,7 @@ export default function DeviationReport() {
                 </Card>
               </div>
 
-              <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+              <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
                 <Card title="Incident Trend" description="Deviations detected per day">
                   <LineChart name="Incidents" categories={trendData.map((d) => d.day)} data={trendData.map((d) => d.count)} />
                 </Card>

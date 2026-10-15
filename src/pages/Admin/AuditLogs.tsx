@@ -244,7 +244,7 @@ export default function AuditLogs({ embedded = false }: { embedded?: boolean }) 
 
   if (!isAdmin) {
     return (
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-5">
         <PageHeader crumbs={["Audit Logs"]} title="Audit Logs" />
         <ErrorBanner>
           Access Denied: You do not have Administrative privileges to view XYRA Audit Logs. This module is restricted to Admin users
@@ -261,7 +261,7 @@ export default function AuditLogs({ embedded = false }: { embedded?: boolean }) 
   );
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-5">
       {embedded ? (
         <div className="flex flex-wrap items-center justify-between gap-3">
           <p className="text-sm text-gray-500 dark:text-gray-400">Read-only evidence of every recorded action across the platform.</p>

@@ -173,7 +173,7 @@ export default function ControlEditor() {
   const isFailedLogins = draft.parameter === "Failed Logins";
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-5">
       <PageMeta title={`${isEdit ? "Edit" : "Create"} Control | Xyra`} description="Configure a security control" />
       <PageHeader
         crumbs={["Control Management", "Controls Config", isEdit ? `Edit ${code}` : "Create Control"]}

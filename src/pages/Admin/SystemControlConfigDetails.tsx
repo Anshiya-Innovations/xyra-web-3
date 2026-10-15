@@ -121,7 +121,7 @@ export default function SystemControlConfigDetails() {
   }
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-5">
       <PageMeta title={`${detail.controlCode} on ${detail.systemCode} | Xyra`} description="Control mapping details" />
       <PageHeader
         crumbs={["Control Management", "System Control Config", `${detail.controlCode} on ${detail.systemCode}`]}
@@ -159,7 +159,7 @@ export default function SystemControlConfigDetails() {
       {error && <ErrorBanner>{error}</ErrorBanner>}
 
       <Card title="Mapping Overview">
-        <div className="grid grid-cols-2 gap-6 sm:grid-cols-4">
+        <div className="grid grid-cols-2 gap-5 sm:grid-cols-4">
           <DetailItem label="Control">{`${detail.controlCode} — ${detail.controlDescription}`}</DetailItem>
           <DetailItem label="System">{`${detail.systemCode} / Client ${detail.systemClient}`}</DetailItem>
           <DetailItem label="Severity / Type">
@@ -178,7 +178,7 @@ export default function SystemControlConfigDetails() {
       </Card>
 
       <Card title="Run History">
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-3">
           <div>
             <div className="text-theme-xs text-gray-500 dark:text-gray-400">Runs Completed</div>
             <div className="mt-1 text-title-sm font-semibold text-gray-800 dark:text-white/90">{detail.runCount}</div>

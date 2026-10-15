@@ -85,7 +85,7 @@ export default function Controls() {
   };
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-5">
       <PageMeta title="Controls Config | Xyra" description="Security Control Master directory" />
       <PageHeader
         crumbs={["Control Management", "Controls Config"]}
