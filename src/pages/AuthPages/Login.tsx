@@ -108,8 +108,8 @@ export default function Login() {
     <>
       <PageMeta title="Sign In | Xyra" description="Sign in to Xyra" />
       <AuthLayout>
-        <div className="flex flex-1 flex-col">
-          <div className="mx-auto flex w-full max-w-md flex-1 flex-col justify-center">
+        <div className="flex flex-1 flex-col overflow-y-auto px-4 py-8 sm:px-6 lg:px-16 xl:px-20 custom-scrollbar">
+          <div className="mx-auto flex w-full max-w-md flex-1 flex-col justify-center my-auto">
             <div className="mb-5 sm:mb-8">
               <XyraMark className="mb-6 h-10" />
               <h1 className="mb-2 text-title-sm font-semibold text-gray-800 sm:text-title-md dark:text-white/90">
