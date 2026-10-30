@@ -1,0 +1,9 @@
+---
+applications:
+  - name: xyra-web-3
+    path: dist
+    memory: 64M
+    disk_quota: 256M
+    buildpacks:
+      - staticfile_buildpack
+

@@ -12,6 +12,18 @@ export default defineConfig({
       "@": "/src",
     },
   },
+  server: {
+    port: 5173,
+    proxy: {
+      "/api": {
+        target:
+          process.env.VITE_BACKEND_TARGET ||
+          "https://forte-innovations-llc-composed-digitalized-framework-ap25ce94a1.cfapps.us10-001.hana.ondemand.com",
+        changeOrigin: true,
+        secure: false,
+      },
+    },
+  },
   plugins: [
     react(),
     svgr({

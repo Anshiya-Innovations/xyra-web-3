@@ -1,10 +1,21 @@
-// xyra-core runs as its own separate server — not bundled with this app — so
-// every call to it is a plain cross-origin fetch(), same pattern as xyra-web's
-// webapp/model/config.js.
-export const AUTH_BASE_URL = "http://localhost:4004";
+declare global {
+  interface Window {
+    __XYRA_API_URL__?: string;
+  }
+}
 
-// Login only, local dev only: xyra-core picks the tenant from the Host header
-// (acme.xyra-ccm.com), and localhost has no tenant subdomain — so login sends
-// this and xyra-core honors it only when DEV_MODE=true. After login the tenant
-// comes from the session token; no other request sends it.
+// In production on SAP BTP Cloud Foundry, set VITE_AUTH_BASE_URL to your backend URL
+// (e.g. https://forte-innovations-llc-composed-digitalized-framework-ap25ce94a1.cfapps.us10-001.hana.ondemand.com).
+// If unset in local dev, it falls back to Vite proxy ("") or http://localhost:4004.
+export const AUTH_BASE_URL =
+  (import.meta.env.VITE_AUTH_BASE_URL !== undefined
+    ? import.meta.env.VITE_AUTH_BASE_URL
+    : import.meta.env.VITE_API_URL) ||
+  (typeof window !== "undefined" && window.__XYRA_API_URL__) ||
+  (typeof window !== "undefined" &&
+  window.location.hostname !== "localhost" &&
+  window.location.hostname !== "127.0.0.1"
+    ? window.location.origin.replace(/xyra-web(-\d+)?/i, "xyra-core")
+    : "");
+
 export const TEST_SUBDOMAIN = "xyrademo";
