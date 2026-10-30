@@ -34,11 +34,6 @@ export default function Profile() {
   const [error, setError] = useState<string | null>(null);
   const [isSaving, setIsSaving] = useState(false);
 
-  const [currentPassword, setCurrentPassword] = useState("");
-  const [newPassword, setNewPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [isChangingPassword, setIsChangingPassword] = useState(false);
-
   const load = () => {
     setIsLoading(true);
     profileApi
@@ -86,33 +81,6 @@ export default function Profile() {
     }
   };
 
-  const onSavePassword = async () => {
-    if (!currentPassword || !newPassword || !confirmPassword) {
-      notify("error", "Please enter Current Password, New Password, and Confirm Password.");
-      return;
-    }
-    if (newPassword !== confirmPassword) {
-      notify("error", "New Password and Confirm Password do not match.");
-      return;
-    }
-    setIsChangingPassword(true);
-    try {
-      const res = await profileApi.changePassword(currentPassword, newPassword);
-      if (!res.success) {
-        notify("error", res.message || "Could not change password.");
-        return;
-      }
-      notify("success", "Password updated successfully!");
-      setCurrentPassword("");
-      setNewPassword("");
-      setConfirmPassword("");
-    } catch {
-      notify("error", "Could not reach the server. Is xyra-core running?");
-    } finally {
-      setIsChangingPassword(false);
-    }
-  };
-
   if (isLoading) return <Loading label="Loading profile…" />;
 
   if (!profile) {
@@ -145,7 +113,7 @@ export default function Profile() {
         crumbs={["Profile"]}
         onBack={goBack}
         title="User Profile & Account Settings"
-        description="Manage your user details and security credentials."
+        description="Manage your user and account details."
       />
 
       {error && <ErrorBanner>{error}</ErrorBanner>}
@@ -179,19 +147,6 @@ export default function Profile() {
           </Button>
           <Button size="sm" startIcon={<Save01 className="size-4" />} loading={isSaving} onClick={onSave}>
             Save Profile Changes
-          </Button>
-        </div>
-      </Card>
-
-      <Card title="Change Password" description="Update the password used to sign in.">
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-3">
-          <TextField label="Current Password" required type="password" value={currentPassword} onChange={setCurrentPassword} />
-          <TextField label="New Password" required type="password" value={newPassword} onChange={setNewPassword} />
-          <TextField label="Confirm New Password" required type="password" value={confirmPassword} onChange={setConfirmPassword} />
-        </div>
-        <div className="mt-6 flex justify-end">
-          <Button size="sm" startIcon={<Save01 className="size-4" />} loading={isChangingPassword} onClick={onSavePassword}>
-            Update Password
           </Button>
         </div>
       </Card>

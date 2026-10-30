@@ -17,7 +17,7 @@ export default function ProjectFlowIllustration() {
     <div className="relative flex h-full w-full flex-col items-center justify-center overflow-hidden bg-black p-6 select-none">
       {/* Background Subtle Radial Glow */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-96 w-96 rounded-full bg-brand-500/5 blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-500/5 blur-3xl" />
       </div>
 
       {/* Clean Minimal Header (no explanations, just the heading) */}
@@ -69,8 +69,16 @@ export default function ProjectFlowIllustration() {
               xmlns="http://www.w3.org/2000/svg"
             >
               {/* Static Background Curves */}
-              <path d="M 230 74 L 230 148" stroke="rgba(255, 255, 255, 0.12)" strokeWidth="1.5" />
-              <path d="M 230 202 L 230 292" stroke="rgba(255, 255, 255, 0.12)" strokeWidth="1.5" />
+              <path
+                d="M 230 74 L 230 148"
+                stroke="rgba(255, 255, 255, 0.12)"
+                strokeWidth="1.5"
+              />
+              <path
+                d="M 230 202 L 230 292"
+                stroke="rgba(255, 255, 255, 0.12)"
+                strokeWidth="1.5"
+              />
               <path
                 d="M 230 202 C 230 260, 75 235, 75 292"
                 stroke="rgba(255, 255, 255, 0.12)"
@@ -94,7 +102,13 @@ export default function ProjectFlowIllustration() {
                 strokeLinecap="round"
                 style={{ filter: "drop-shadow(0 0 6px #38bdf8)" }}
               >
-                <animate attributeName="stroke-dashoffset" from="140" to="0" dur="2s" repeatCount="indefinite" />
+                <animate
+                  attributeName="stroke-dashoffset"
+                  from="140"
+                  to="0"
+                  dur="2s"
+                  repeatCount="indefinite"
+                />
               </path>
 
               {/* Center to Left (Emerald) */}
@@ -107,7 +121,13 @@ export default function ProjectFlowIllustration() {
                 fill="none"
                 style={{ filter: "drop-shadow(0 0 6px #34d399)" }}
               >
-                <animate attributeName="stroke-dashoffset" from="246" to="0" dur="2.4s" repeatCount="indefinite" />
+                <animate
+                  attributeName="stroke-dashoffset"
+                  from="246"
+                  to="0"
+                  dur="2.4s"
+                  repeatCount="indefinite"
+                />
               </path>
 
               {/* Center to Middle (Purple) */}
@@ -119,7 +139,13 @@ export default function ProjectFlowIllustration() {
                 strokeLinecap="round"
                 style={{ filter: "drop-shadow(0 0 6px #c084fc)" }}
               >
-                <animate attributeName="stroke-dashoffset" from="172" to="0" dur="2.1s" repeatCount="indefinite" />
+                <animate
+                  attributeName="stroke-dashoffset"
+                  from="172"
+                  to="0"
+                  dur="2.1s"
+                  repeatCount="indefinite"
+                />
               </path>
 
               {/* Center to Right (Amber) */}
@@ -132,7 +158,13 @@ export default function ProjectFlowIllustration() {
                 fill="none"
                 style={{ filter: "drop-shadow(0 0 6px #fbbf24)" }}
               >
-                <animate attributeName="stroke-dashoffset" from="246" to="0" dur="2.4s" repeatCount="indefinite" />
+                <animate
+                  attributeName="stroke-dashoffset"
+                  from="246"
+                  to="0"
+                  dur="2.4s"
+                  repeatCount="indefinite"
+                />
               </path>
             </svg>
 
@@ -143,8 +175,12 @@ export default function ProjectFlowIllustration() {
                   <Database01 className="h-5 w-5" />
                 </div>
                 <div className="text-left">
-                  <div className="text-xs font-semibold text-white">Data Source</div>
-                  <div className="text-[11px] font-medium text-neutral-400">SAP S/4HANA</div>
+                  <div className="text-xs font-semibold text-white">
+                    Data Source
+                  </div>
+                  <div className="text-[11px] font-medium text-neutral-400">
+                    SAP S/4HANA
+                  </div>
                 </div>
               </div>
             </div>
@@ -157,13 +193,15 @@ export default function ProjectFlowIllustration() {
             </div>
 
             {/* BOTTOM NODES (3 Pills) */}
-            <div className="absolute top-[292px] left-0 right-0 flex items-center justify-between px-2">
+            <div className="absolute top-[292px] right-0 left-0 flex items-center justify-between px-2">
               {/* Left: Deviations */}
               <div className="flex items-center gap-2.5 rounded-full border border-white/10 bg-[#121214] px-4 py-2.5 shadow-lg">
                 <div className="flex h-7 w-7 items-center justify-center rounded-lg border border-emerald-500/20 bg-emerald-500/10 text-emerald-400">
                   <AlertTriangle className="h-4 w-4 text-emerald-400" />
                 </div>
-                <span className="text-xs font-medium text-white">Deviations</span>
+                <span className="text-xs font-medium text-white">
+                  Deviations
+                </span>
               </div>
 
               {/* Middle: Review Queue */}
@@ -171,7 +209,9 @@ export default function ProjectFlowIllustration() {
                 <div className="flex h-7 w-7 items-center justify-center rounded-lg border border-purple-500/20 bg-purple-500/10 text-purple-400">
                   <ShieldTick className="h-4 w-4 text-purple-400" />
                 </div>
-                <span className="text-xs font-medium text-white">Review Queue</span>
+                <span className="text-xs font-medium text-white">
+                  Review Queue
+                </span>
               </div>
 
               {/* Right: Jira Sync */}
@@ -179,7 +219,9 @@ export default function ProjectFlowIllustration() {
                 <div className="flex h-7 w-7 items-center justify-center rounded-lg border border-amber-500/20 bg-amber-500/10 text-amber-400">
                   <Ticket01 className="h-4 w-4 text-amber-400" />
                 </div>
-                <span className="text-xs font-medium text-white">Jira Sync</span>
+                <span className="text-xs font-medium text-white">
+                  Jira Sync
+                </span>
               </div>
             </div>
           </div>
@@ -200,7 +242,11 @@ export default function ProjectFlowIllustration() {
                 strokeWidth="1.5"
                 fill="none"
               />
-              <path d="M 230 110 L 230 188" stroke="rgba(255, 255, 255, 0.12)" strokeWidth="1.5" />
+              <path
+                d="M 230 110 L 230 188"
+                stroke="rgba(255, 255, 255, 0.12)"
+                strokeWidth="1.5"
+              />
               <path
                 d="M 385 110 C 385 160, 230 140, 230 188"
                 stroke="rgba(255, 255, 255, 0.12)"
@@ -208,7 +254,11 @@ export default function ProjectFlowIllustration() {
                 fill="none"
               />
               {/* Center to Bottom Card */}
-              <path d="M 230 242 L 230 300" stroke="rgba(255, 255, 255, 0.12)" strokeWidth="1.5" />
+              <path
+                d="M 230 242 L 230 300"
+                stroke="rgba(255, 255, 255, 0.12)"
+                strokeWidth="1.5"
+              />
 
               {/* Animated Laser Beams */}
               <path
@@ -220,7 +270,13 @@ export default function ProjectFlowIllustration() {
                 fill="none"
                 style={{ filter: "drop-shadow(0 0 6px #38bdf8)" }}
               >
-                <animate attributeName="stroke-dashoffset" from="224" to="0" dur="2.4s" repeatCount="indefinite" />
+                <animate
+                  attributeName="stroke-dashoffset"
+                  from="224"
+                  to="0"
+                  dur="2.4s"
+                  repeatCount="indefinite"
+                />
               </path>
 
               <path
@@ -231,7 +287,13 @@ export default function ProjectFlowIllustration() {
                 strokeLinecap="round"
                 style={{ filter: "drop-shadow(0 0 6px #34d399)" }}
               >
-                <animate attributeName="stroke-dashoffset" from="140" to="0" dur="2s" repeatCount="indefinite" />
+                <animate
+                  attributeName="stroke-dashoffset"
+                  from="140"
+                  to="0"
+                  dur="2s"
+                  repeatCount="indefinite"
+                />
               </path>
 
               <path
@@ -243,7 +305,13 @@ export default function ProjectFlowIllustration() {
                 fill="none"
                 style={{ filter: "drop-shadow(0 0 6px #fbbf24)" }}
               >
-                <animate attributeName="stroke-dashoffset" from="224" to="0" dur="2.4s" repeatCount="indefinite" />
+                <animate
+                  attributeName="stroke-dashoffset"
+                  from="224"
+                  to="0"
+                  dur="2.4s"
+                  repeatCount="indefinite"
+                />
               </path>
 
               {/* Center to Invoice (Purple Glow Beam, exactly like Image 1) */}
@@ -255,16 +323,24 @@ export default function ProjectFlowIllustration() {
                 strokeLinecap="round"
                 style={{ filter: "drop-shadow(0 0 6px #a855f7)" }}
               >
-                <animate attributeName="stroke-dashoffset" from="120" to="0" dur="1.8s" repeatCount="indefinite" />
+                <animate
+                  attributeName="stroke-dashoffset"
+                  from="120"
+                  to="0"
+                  dur="1.8s"
+                  repeatCount="indefinite"
+                />
               </path>
             </svg>
 
             {/* TOP 3 CARDS WITH SKELETON LINES (Image 1 Style) */}
-            <div className="absolute top-[10px] left-0 right-0 flex items-center justify-between px-2">
+            <div className="absolute top-[10px] right-0 left-0 flex items-center justify-between px-2">
               {/* Card 1: SAP Telemetry */}
               <div className="w-[125px] rounded-xl border border-white/10 bg-[#121214] p-3 shadow-lg">
                 <div className="flex items-center justify-between">
-                  <span className="text-[11px] font-semibold text-white">SAP S/4</span>
+                  <span className="text-[11px] font-semibold text-white">
+                    SAP S/4
+                  </span>
                   <Database01 className="h-3.5 w-3.5 text-cyan-400" />
                 </div>
                 <div className="mt-2.5 flex flex-col gap-1.5">
@@ -277,7 +353,9 @@ export default function ProjectFlowIllustration() {
               {/* Card 2: Rule Engine */}
               <div className="w-[125px] rounded-xl border border-white/10 bg-[#121214] p-3 shadow-lg">
                 <div className="flex items-center justify-between">
-                  <span className="text-[11px] font-semibold text-white">Rules</span>
+                  <span className="text-[11px] font-semibold text-white">
+                    Rules
+                  </span>
                   <CpuChip01 className="h-3.5 w-3.5 text-emerald-400" />
                 </div>
                 <div className="mt-2.5 flex flex-col gap-1.5">
@@ -290,7 +368,9 @@ export default function ProjectFlowIllustration() {
               {/* Card 3: SOD Matrix */}
               <div className="w-[125px] rounded-xl border border-white/10 bg-[#121214] p-3 shadow-lg">
                 <div className="flex items-center justify-between">
-                  <span className="text-[11px] font-semibold text-white">SOD Matrix</span>
+                  <span className="text-[11px] font-semibold text-white">
+                    SOD Matrix
+                  </span>
                   <ShieldTick className="h-3.5 w-3.5 text-amber-400" />
                 </div>
                 <div className="mt-2.5 flex flex-col gap-1.5">
@@ -320,13 +400,12 @@ export default function ProjectFlowIllustration() {
                   <div className="h-1 w-3/5 rounded-full bg-white/10" />
                   <div className="h-1 w-2/3 rounded-full bg-white/10" />
                 </div>
-
                 {/* Red PDF Badge (exact match to Image 1) */}
-                <div className="absolute -bottom-2 -right-2">
-                  <span className="inline-flex items-center rounded-md bg-rose-600 px-2 py-0.5 text-[10px] font-bold text-white shadow-[0_0_12px_rgba(225,29,72,0.8)]">
-                    PDF
+                {/* <div className="absolute -right-2 -bottom-2">
+                  <span className="inline-flex items-center rounded-md bg-green-600 px-2 py-0.5 text-[10px] font-bold text-white shadow-[0_0_12px_rgba(225,29,72,0.8)]">
+                    CSV
                   </span>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
